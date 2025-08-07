@@ -102,7 +102,7 @@ async def carter(ctx):
 async def send_image(ctx):
     #Send a local image file.
     # adjust the path to wherever you stored it
-    file_path = "tepig.png"
+    file_path = "tImages/epig.png"
     # send it
     await ctx.send(file=discord.File(file_path))
 
@@ -110,7 +110,7 @@ async def send_image(ctx):
 async def jeremy(ctx):
     #Send a local image file.
     # adjust the path to wherever you stored it
-    file_path = "jeremyc.png"
+    file_path = "Images/jeremyc.png"
     # send it
     await ctx.send(file=discord.File(file_path))
     await ctx.send('Look at this beautiful boy!')
@@ -216,7 +216,7 @@ async def add(ctx, arg1: int, arg2: int):
 
     elif result == 420:
         await ctx.send(f'{result} :)')
-        file_path = "weedimage.png"
+        file_path = "Images/weedimage.png"
         # send it
         await ctx.send(file=discord.File(file_path))
         return
@@ -225,8 +225,32 @@ async def add(ctx, arg1: int, arg2: int):
     await ctx.send(f'{result}')
 
 @bot.command()
+async def addquote(ctx, *arg):
+    #open quotes.txt and append a new line with the arguments
+    with open('quotes.txt', 'a') as f:
+        f.write(' '.join(arg) + '\n')
+    return
+
+@bot.command()
+async def quotes(ctx):
+    #open quotes.txt and read each line and send it as a message
+    with open('quotes.txt', 'r') as f:
+        lines = file.readlines()
+        lineCount = len(lines)
+        for i in range(lineCount):
+            line = f.readline()
+            if not line:
+                break
+            await ctx.send(line.strip())
+        return
+
+
+@bot.command()
 async def commands(ctx):
     await ctx.send('add: math command\nechome: Repeats back what you type after.\nblack\nsanchez\nginger\nunemployed\njeremy\njoel\npingbaker\npingremy\n')
+
+
+
 
 
 
