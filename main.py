@@ -14,7 +14,7 @@ intents.message_content = True
 intents.members = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
-
+"""
 # Load or create image map
 if os.path.exists("data.json"):
     with open("data.json", "r") as f:
@@ -26,7 +26,7 @@ def save_image_map():
     with open("data.json", "w") as f:
         json.dump(image_map, f, indent=4)
 
-"""
+
 @bot.command()
 async def image(ctx, *, keyword):
     #Send the image associated with the keyword.
@@ -43,7 +43,7 @@ async def image(ctx, *, keyword):
         return
 
     await ctx.send(file=discord.File(file_path))
-"""
+
 @bot.command()
 async def tagimage(ctx, keyword):
     #Attach an image with a keyword. Usage: !tagimage pizza (attach an image)
@@ -69,15 +69,18 @@ async def tagimage(ctx, keyword):
     save_image_map()
 
     await ctx.send(f"Image saved for keyword '{keyword}'!")
-
+"""
 
 @bot.event
 async def on_ready():
     print(f"We are ready to go in, {bot.user.name}")
 
+"""
+
 @bot.command()
 async def black(ctx):
     await ctx.send('Monkey!')
+    print("black")
 
 @bot.command()
 async def sanchez(ctx):
@@ -96,8 +99,8 @@ async def carter(ctx):
     await ctx.send('I may be a Clanker, but at least im not a NIG-')
 
 @bot.command()
-async def image(ctx):
-    """Send a local image file."""
+async def send_image(ctx):
+    #Send a local image file.
     # adjust the path to wherever you stored it
     file_path = "tepig.png"
     # send it
@@ -105,14 +108,14 @@ async def image(ctx):
 
 @bot.command()
 async def jeremy(ctx):
-    """Send a local image file."""
+    #Send a local image file.
     # adjust the path to wherever you stored it
     file_path = "jeremyc.png"
     # send it
     await ctx.send(file=discord.File(file_path))
     await ctx.send('Look at this beautiful boy!')
 
-
+"""
 
 @bot.event
 async def on_message(message):
@@ -183,7 +186,7 @@ async def on_message(message):
 
 @bot.command()
 async def joel(ctx):
-    """Send a local image file."""
+    #Send a local image file.
     # adjust the path to wherever you stored it
     file_path = "joelimage.png"
     # send it
