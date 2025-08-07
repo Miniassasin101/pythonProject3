@@ -2,8 +2,8 @@ import discord
 from discord.ext import commands
 import logging
 from dotenv import load_dotenv
+import json
 import os
-import fileinput
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
@@ -26,7 +26,7 @@ def save_image_map():
     with open("data.json", "w") as f:
         json.dump(image_map, f, indent=4)
 
-"""
+
 @bot.command()
 async def image(ctx, *, keyword):
     #Send the image associated with the keyword.
@@ -43,7 +43,7 @@ async def image(ctx, *, keyword):
         return
 
     await ctx.send(file=discord.File(file_path))
-"""
+
 @bot.command()
 async def tagimage(ctx, keyword):
     #Attach an image with a keyword. Usage: !tagimage pizza (attach an image)
@@ -74,8 +74,8 @@ async def tagimage(ctx, keyword):
 @bot.event
 async def on_ready():
     print(f"We are ready to go in, {bot.user.name}")
+    await ctx.send('Monkey!')
 
-"""
 
 @bot.command()
 async def black(ctx):
@@ -92,7 +92,7 @@ async def ginger(ctx):
 
 @bot.command()
 async def unemployed(ctx):
-    await ctx.send('@luhkapalot')
+    await ctx.send('<@297764518568656897>')
 
 @bot.command()
 async def carter(ctx):
@@ -100,17 +100,17 @@ async def carter(ctx):
 
 @bot.command()
 async def send_image(ctx):
-    #Send a local image file.
+    """Send a local image file."""
     # adjust the path to wherever you stored it
-    file_path = "Images/tepig.png"
+    file_path = "tepig.png"
     # send it
     await ctx.send(file=discord.File(file_path))
 
 @bot.command()
 async def jeremy(ctx):
-    #Send a local image file.
+    """Send a local image file."""
     # adjust the path to wherever you stored it
-    file_path = "Images/jeremyc.png"
+    file_path = "jeremyc.png"
     # send it
     await ctx.send(file=discord.File(file_path))
     await ctx.send('Look at this beautiful boy!')
@@ -216,7 +216,7 @@ async def add(ctx, arg1: int, arg2: int):
 
     elif result == 420:
         await ctx.send(f'{result} :)')
-        file_path = "Images/weedimage.png"
+        file_path = "weedimage.png"
         # send it
         await ctx.send(file=discord.File(file_path))
         return
@@ -225,32 +225,8 @@ async def add(ctx, arg1: int, arg2: int):
     await ctx.send(f'{result}')
 
 @bot.command()
-async def addquote(ctx, *arg):
-    #open quotes.txt and append a new line with the arguments
-    with open('quotes.txt', 'a') as f:
-        f.write(' '.join(arg) + '\n')
-    return
-
-@bot.command()
-async def quotes(ctx):
-    #open quotes.txt and read each line and send it as a message
-    with open('quotes.txt', 'r') as f:
-        lines = f.readlines()
-        lineCount = len(lines)
-        for i in range(lineCount):
-            line = lines[i]
-            if not line:
-                break
-            await ctx.send(line.strip())
-        return
-
-
-@bot.command()
 async def commands(ctx):
-    await ctx.send('add: math command\nechome: Repeats back what you type after.\nblack\nsanchez\nginger\nunemployed\njeremy\npingbaker\npingremy\naddquote\nquotes\n')
-
-
-
+    await ctx.send('add: math command\nechome: Repeats back what you type after.\nblack\nsanchez\nginger\nunemployed\njeremy\njoel\npingbaker\npingremy\n')
 
 
 
