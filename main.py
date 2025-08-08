@@ -100,7 +100,7 @@ async def ginger(ctx):
 
 @bot.command()
 async def unemployed(ctx):
-    await ctx.send('@luhkapalot')
+    await ctx.send('<@297764518568656897>')
 
 @bot.command()
 async def carter(ctx):
@@ -172,6 +172,8 @@ async def when_sanchez_calls(message):
             await message.channel.send(f"Sanchezzzz! Remy loves you <3")
 
     await bot.process_commands(message)
+
+
 
 
 @bot.listen()
