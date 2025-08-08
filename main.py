@@ -78,6 +78,15 @@ async def tagimage(ctx, keyword):
 
     await ctx.send(f"Image saved for keyword '{keyword}'!")
 
+@bot.command(name="listimages", help="Display all saved image keywords")
+async def listimages(ctx):
+    if not image_map:
+        await ctx.send("No images have been tagged yet.")
+        return
+
+    # get and sort all the keywords
+    keywords = ", ".join(sorted(image_map.keys()))
+    await ctx.send(f"Available image keywords:\n{keywords}")
 
 @bot.event
 async def on_ready():
@@ -150,7 +159,7 @@ async def when_baker_calls(message):
 
     await bot.process_commands(message)
 
-
+"""
 @bot.listen('on_message')
 async def when_sanchez_calls(message):
     # Avoid responding to itself
@@ -172,7 +181,7 @@ async def when_sanchez_calls(message):
             await message.channel.send(f"Sanchezzzz! Remy loves you <3")
 
     await bot.process_commands(message)
-
+"""
 
 
 
@@ -232,21 +241,21 @@ async def addquote(ctx, *arg):
 
 @bot.command()
 async def quotes(ctx):
-    #open quotes.txt and read each line and send it as a message
+    # Read and strip non-blank lines
     with open('quotes.txt', 'r') as f:
-        lines = f.readlines()
-        lineCount = len(lines)
-        for i in range(lineCount):
-            line = lines[i]
-            if not line:
-                break
-            await ctx.send(line.strip())
+        lines = [line.strip() for line in f if line.strip()]
+
+    if not lines:
+        await ctx.send("No quotes found.")
         return
+
+    # Join them with newlines and send one message
+    await ctx.send("\n".join(lines))
 
 
 @bot.command()
 async def commands(ctx):
-    await ctx.send('add: math command\nechome: Repeats back what you type after.\nblack\nsanchez\nginger\nunemployed\njeremy\npingbaker\npingremy\naddquote\nquotes\ntagimage: enter a keyword and attatch an image to be saved\nimage: Get an image that matches a keyword')
+    await ctx.send('add: math command\nechome: Repeats back what you type after.\nblack\nsanchez\nginger\nunemployed\njeremy\npingbaker\npingremy\naddquote\nquotes\ntagimage: enter a keyword and attatch an image to be saved\nimage: Get an image that matches a keyword\nlistimages: Prints all image keywords')
 
 
 
