@@ -15,6 +15,13 @@ intents.members = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+<<<<<<< Updated upstream
+=======
+# ensure image folder exists
+IMAGES_DIR = "images"
+os.makedirs(IMAGES_DIR, exist_ok=True)
+
+>>>>>>> Stashed changes
 # Load or create image map
 if os.path.exists("data.json"):
     with open("data.json", "r") as f:
@@ -75,12 +82,12 @@ async def tagimage(ctx, keyword):
 async def on_ready():
     print(f"We are ready to go in, {bot.user.name}")
 
-"""
+
 
 @bot.command()
 async def black(ctx):
     await ctx.send('Monkey!')
-    print("black")
+    await print("black")
 
 @bot.command()
 async def sanchez(ctx):
@@ -102,7 +109,11 @@ async def carter(ctx):
 async def send_image(ctx):
     #Send a local image file.
     # adjust the path to wherever you stored it
+<<<<<<< Updated upstream
     file_path = "Images/tepig.png"
+=======
+    file_path = "images/tepig.png"
+>>>>>>> Stashed changes
     # send it
     await ctx.send(file=discord.File(file_path))
 
@@ -110,55 +121,19 @@ async def send_image(ctx):
 async def jeremy(ctx):
     #Send a local image file.
     # adjust the path to wherever you stored it
-    file_path = "Images/jeremyc.png"
+    file_path = "images/jeremyc.png"
     # send it
     await ctx.send(file=discord.File(file_path))
     await ctx.send('Look at this beautiful boy!')
 
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
 
 
-@bot.event
-async def on_message(message):
-    # Avoid responding to itself
-    if message.author == bot.user:
-        return
-
-    # Replace this with the actual user ID you want to track
-    watched_user_id = 844944679330119680
-
-    # Check if that user is mentioned in the message
-    for user in message.mentions:
-        if user.id == watched_user_id:
-            await message.channel.send(f"NIGGER ALERT!!!")
-
-    # Check if the user was mentioned in the message
-    #for user in message.mentions):
-    #    if message.mentions[0].user == watched_user_id:
-    #     await ctx.send('Come hither my little Nigger!')
-    await bot.process_commands(message)
-
-@bot.event
-async def on_message(message):
-    # Avoid responding to itself
-    if message.author == bot.user:
-        return
-
-    # Replace this with the actual user ID you want to track
-    watched_user_id = 275760118509862913
-
-    # Check if that user is mentioned in the message
-    for user in message.mentions:
-        if user.id == watched_user_id:
-            await message.channel.send(f"Come here babygirl, or better yet, FUCKING SHOWER.")
-
-    # Check if the user was mentioned in the message
-    #for user in message.mentions):
-    #    if message.mentions[0].user == watched_user_id:
-    #     await ctx.send('Come hither my little Nigger!')
-    await bot.process_commands(message)
-
-@bot.event
-async def on_message(message):
+@bot.listen('on_message')
+async def when_baker_calls(message):
     # Avoid responding to itself
     if message.author == bot.user:
         return
@@ -177,11 +152,37 @@ async def on_message(message):
         if user.id == remy_user_id:
             await message.channel.send(f"Awww daddy baker called? Remy's coming!")
 
-    # Check if the user was mentioned in the message
-    #for user in message.mentions):
-    #    if message.mentions[0].user == watched_user_id:
-    #     await ctx.send('Come hither my little Nigger!')
     await bot.process_commands(message)
+
+
+@bot.listen('on_message')
+async def when_sanchez_calls(message):
+    # Avoid responding to itself
+    if message.author == bot.user:
+        return
+
+
+    # Replace this with the actual user ID you want to track
+
+    sanchez_user_id = 523602415283470339
+    remy_user_id = 418373528077991946
+
+    if message.author.id != sanchez_user_id:
+        return
+
+    # Check if that user is mentioned in the message
+    for user in message.mentions:
+        if user.id == remy_user_id:
+            await message.channel.send(f"Sanchezzzz! Remy loves you <3")
+
+    await bot.process_commands(message)
+
+
+@bot.listen()
+async def on_message(message):
+    pass
+
+
 
 
 @bot.command()
