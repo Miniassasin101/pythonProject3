@@ -2,7 +2,9 @@ import discord
 from discord.ext import commands
 import logging
 from dotenv import load_dotenv
+import json
 import os
+import hashlib
 import fileinput
 
 load_dotenv()
@@ -15,13 +17,12 @@ intents.members = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-<<<<<<< Updated upstream
-=======
+
 # ensure image folder exists
 IMAGES_DIR = "images"
 os.makedirs(IMAGES_DIR, exist_ok=True)
 
->>>>>>> Stashed changes
+
 # Load or create image map
 if os.path.exists("data.json"):
     with open("data.json", "r") as f:
@@ -33,7 +34,7 @@ def save_image_map():
     with open("data.json", "w") as f:
         json.dump(image_map, f, indent=4)
 
-"""
+
 @bot.command()
 async def image(ctx, *, keyword):
     #Send the image associated with the keyword.
@@ -50,7 +51,7 @@ async def image(ctx, *, keyword):
         return
 
     await ctx.send(file=discord.File(file_path))
-"""
+
 @bot.command()
 async def tagimage(ctx, keyword):
     #Attach an image with a keyword. Usage: !tagimage pizza (attach an image)
@@ -109,11 +110,9 @@ async def carter(ctx):
 async def send_image(ctx):
     #Send a local image file.
     # adjust the path to wherever you stored it
-<<<<<<< Updated upstream
-    file_path = "Images/tepig.png"
-=======
+
     file_path = "images/tepig.png"
->>>>>>> Stashed changes
+
     # send it
     await ctx.send(file=discord.File(file_path))
 
@@ -126,10 +125,7 @@ async def jeremy(ctx):
     await ctx.send(file=discord.File(file_path))
     await ctx.send('Look at this beautiful boy!')
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 
 
 @bot.listen('on_message')
@@ -248,7 +244,7 @@ async def quotes(ctx):
 
 @bot.command()
 async def commands(ctx):
-    await ctx.send('add: math command\nechome: Repeats back what you type after.\nblack\nsanchez\nginger\nunemployed\njeremy\npingbaker\npingremy\naddquote\nquotes\n')
+    await ctx.send('add: math command\nechome: Repeats back what you type after.\nblack\nsanchez\nginger\nunemployed\njeremy\npingbaker\npingremy\naddquote\nquotes\ntagimage: enter a keyword and attatch an image to be saved\nimage: Get an image that matches a keyword')
 
 
 
